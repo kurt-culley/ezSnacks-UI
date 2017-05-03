@@ -12,7 +12,7 @@ class CategoriesIndex extends Component {
     return this.props.categories.map((category) => {
       return (
         <li className="list-group-item" key={category.id}>
-          <Link to={"categories/" + category.id}>
+          <Link to={"categories/" + category.id + "/items"}>
             <strong>{category.name}</strong>
           </Link>
           <img src={category.image_url}/>
@@ -26,7 +26,7 @@ class CategoriesIndex extends Component {
       <div>
         <div className="text-xs-right">
           <Link to="/categories/new" className="btn btn-primary">
-            Add a Category
+            Add Category
           </Link>
         </div>
         <h3>Categories</h3>

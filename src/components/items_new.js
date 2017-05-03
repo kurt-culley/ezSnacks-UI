@@ -1,21 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
-import { createCategory } from '../actions/index';
+import { createItem } from '../actions/item_actions';
 import { Link } from 'react-router';
 
 const FIELDS = {
   name: {
     type: 'input',
-    label: 'Name of Category'
+    label: 'Name of Item'
+  },
+  description: {
+    type: 'input',
+    label: 'Description of Item'
+  },
+  price: {
+    type: 'input',
+    label: 'Price of Item'
   },
   image_url: {
     type: 'input',
-    label: 'Image URL for Category'
+    label: 'Image URL for Item'
   }
 };
 
-class CategoriesNew extends Component {
+class ItemsNew extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
@@ -35,7 +43,7 @@ class CategoriesNew extends Component {
   }
 
   onSubmit(props) {
-    this.props.createCategory(props)
+    this.props.createItem(this.props.params.id, props)
       .then(() => {
         this.context.router.push('/');
       });
@@ -45,7 +53,7 @@ class CategoriesNew extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <h3>Create A New Category</h3>
+        <h3>Create A New Item</h3>
         {_.map(FIELDS, this.renderField.bind(this))}
         <button type="sumbit" className="btn btn-primary">Submit</button>
         <Link to="/" className="btn btn-danger">Cancel</Link>
@@ -67,7 +75,7 @@ function validate(values) {
 }
 
 export default reduxForm({
-  form: 'CategoriesNew',
+  form: 'ItemsNew',
   fields: _.keys(FIELDS),
   validate
-}, null, { createCategory })(CategoriesNew);
+}, null, { createItem })(ItemsNew);

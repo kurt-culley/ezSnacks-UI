@@ -5,6 +5,9 @@ export const CREATE_CATEGORY = 'CREATE_CATEGORY';
 export const FETCH_CATEGORY = 'FETCH_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
+export const FETCH_ITEMS = 'FETCH_ITEMS';
+export const CREATE_ITEM = 'CREATE_ITEM';
+
 const ROOT_URL = 'http://127.0.0.1:3000/restaurants/1'
 
 export function fetchCategories() {
