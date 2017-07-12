@@ -14,13 +14,20 @@ module.exports = {
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
-    }]
+    },
+    {
+      test: /\.css$/,
+      loader: 'css-loader',
+    }
+  ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    disableHostCheck: true,
+    https: true
   }
 };

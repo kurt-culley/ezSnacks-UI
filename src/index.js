@@ -2,17 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { Router, browserHistory } from 'react-router';
-import reducers from './reducers';
-import routes from './routes';
-import promise from 'redux-promise';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './components/home';
+import CategoriesIndex from './components/categoriesIndex';
+import ItemsIndex from './components/itemsIndex';
+import OrderContainer from './components/orderContainer';
+import configureStore from './store/configureStore';
 
-const createStoreWithMiddleware = applyMiddleware(
-  promise
-)(createStore);
+const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <Router history={browserHistory} routes={routes} />
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>
+        <OrderContainer />
+        <Switch>
+          <Route path="/categories/:id/items" component={ItemsIndex} />
+          <Route path="/categories" component={CategoriesIndex} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   </Provider>
   , document.querySelector('.container'));
