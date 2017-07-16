@@ -43,22 +43,22 @@ class OrderContainer extends Component {
           <div>
             <Modal show={this.state.showModal} onHide={this.close}>
               <Modal.Header closeButton>
-                <Modal.Title>Order</Modal.Title>
+                <Modal.Title className="order-header">Order</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Order orderId={localStorage.orderId}/>
               </Modal.Body>
               <Modal.Footer>
-                <div className="container">
+                <div>
                   <div className="row">
-                    <div className="col-xs-2">
-                      <Button className="pull-left btn-danger" onClick={this.close}>Cancel</Button>
+                    <div className="col-xs-4">
+                      <Button className="pull-left btn-danger cancel-btn" onClick={this.close}>Cancel</Button>
                     </div>
-                    <div className="col-xs-8 text-center">
-                      <Button className="btn-success" onClick={this.close}>Checkout</Button>
+                    <div className="col-xs-4 text-center">
+                      <Button className="btn-success checkout-btn" onClick={this.close}>Checkout</Button>
                     </div>
-                    <div className="col-xs-2">
-                      <Button className="pull-right" onClick={this.close}>Close</Button>
+                    <div className="col-xs-4">
+                      <Button className="pull-right close-btn" onClick={this.close}>Close</Button>
                     </div>
                   </div>
                 </div>

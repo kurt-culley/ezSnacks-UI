@@ -50,6 +50,11 @@ export const addToOrder = (itemId) => {
   return axios.post(URI, { menu_item_id: itemId });
 };
 
+export const deleteOrderItem = (itemId) => {
+  const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${localStorage.getItem('orderId')}/items/${itemId}`;
+  return axios.delete(URI, { menu_item_id: itemId });
+};
+
 export const increaseOrderItem = (itemId) => {
   const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${localStorage.getItem('orderId')}/items/${itemId}/add`;
   return axios.post(URI);

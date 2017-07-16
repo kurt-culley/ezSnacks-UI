@@ -18,7 +18,7 @@ class Order extends Component {
       <div>
         <OrderItems items={this.props.order.order} />
         <div>
-          <strong>Total = £{this.props.order.order.sub_total}</strong>
+          <strong>Total: £{this.props.order.order.sub_total}</strong>
         </div>
       </div>
     );

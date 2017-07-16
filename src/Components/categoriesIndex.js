@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCategoriesAction } from '../actions/categoryActions';
 import { NavLink } from 'react-router-dom';
 
+
 class CategoriesIndex extends Component {
 
   componentDidMount() {
@@ -20,10 +21,17 @@ class CategoriesIndex extends Component {
           className="list-group-item"
           key={category.id}
           >
-          <img src={category.image_url} />
-          <NavLink to={`/categories/${category.id}/items`}>
-            <strong>{category.name}</strong>
-          </NavLink>
+            <div className="row-">
+                <div className="col-xs-4 col-sm-2 vcenter">
+                    <img src={category.image_url} />
+                </div>
+                <div className="col-xs-6 col-sm-6 vcenter">
+                    <NavLink to={`/categories/${category.id}/items`}>
+                        <h4>{category.name}</h4>
+                    </NavLink>
+                </div>
+                <div className="col-xs-2 col-sm-4 vcenter"></div>
+            </div>
         </li>
       )
     });
