@@ -26,8 +26,18 @@ class ItemsIndex extends Component {
                 <li
                     className="list-group-item"
                     key={item.id}>
-                    <img src={item.image_url} />
-                    <strong onClick={() => this.handleClick(item.id)} >{item.name} - £{item.price}</strong>
+                    <div className="row-">
+                        <div className="col-xs-4 col-sm-2 vcenter">
+                            <img src={item.image_url} />
+                        </div>
+                        <div className="col-xs-6 col-sm-6 vcenter">
+                            <h4 onClick={() => this.handleClick(item.id)}>{item.name}</h4>
+                            <small>{item.description}</small>
+                        </div>
+                        <div className="col-xs-2 col-sm-4 vcenter">
+                            <strong>£{item.price}</strong>
+                        </div>
+                    </div>
                 </li>
             )
         })
