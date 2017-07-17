@@ -12,16 +12,16 @@ import configureStore from './store/configureStore';
 const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <OrderContainer />
-        <Switch>
-          <Route path="/categories/:id/items" component={ItemsIndex} />
-          <Route path="/categories" component={CategoriesIndex} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  </Provider>
-  , document.querySelector('.container'));
+    <Provider store={store}>
+      <BrowserRouter>
+        <div>
+          <OrderContainer />
+          <Switch>
+            <Route path="/categories/:id/items" component={ItemsIndex} />
+            <Route path="/categories" component={CategoriesIndex} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Provider>
+    , document.querySelector('.container'));

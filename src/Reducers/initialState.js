@@ -1,5 +1,5 @@
 export default {
-  categories: [],
-  items: [],
-  order: null
+    categories: [],
+    items: [],
+    order: null
 };

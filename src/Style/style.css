@@ -1,13 +1,13 @@
 * {
-  font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
     border-radius: 0 !important;
 }
 
 body {
     background-color: #6C7A89;
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .vcenter {
@@ -34,7 +34,7 @@ body {
 }
 
 .menu-list {
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 }
 
 a strong {
@@ -75,7 +75,7 @@ h3 {
     z-index: 100;
     top: 90%;
     color: #0F0E0E;
-    box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
     border: 1px solid #ddd;
 }
 
@@ -84,20 +84,22 @@ h3 {
 }
 
 .order-btn, .order-btn:focus, .order-btn:visited, .order-btn:active, .order-btn:hover {
+    width: 60px;
+    height: 60px;
     position: fixed;
-    right: 3%;
+    right: 2%;
     z-index: 100;
-    top: 90%;
+    bottom: 1%;
     background-color: #FFFFFF;
     color: #0F0E0E;
-    box-shadow: 0 0 10px -3px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.5);
     border: 1px solid #ddd;
 }
 
 .qrcode {
     height: 50%;
     width: 100%;
-    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
     border-color: #00FF00;
     border-style: solid;
 }
@@ -123,4 +125,19 @@ h3 {
 
 .checkout-btn {
     width: 100%;
+}
+
+.order-badge {
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, .4), inset -1px -1px 0px rgba(0, 0, 0, .4);
+    color: #FCFCFC !important;
+    width: 15px;
+    height: 15px;
+    position: absolute !important;
+    background-color: #f0ad4e !important;
+    top: -4px !important;
+    right: -4px;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    padding: 1px 5px;
 }
