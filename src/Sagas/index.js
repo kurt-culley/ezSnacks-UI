@@ -1,5 +1,6 @@
 import { watchFetchCategories, watchFetchItems, watchFetchOrder,
-    watchAddToOrder, watchIncreaseOrderItem, watchReduceOrderItem, watchDeleteOrderItem} from './watcher';
+    watchAddToOrder, watchIncreaseOrderItem, watchReduceOrderItem,
+    watchDeleteOrderItem, watchDeleteOrder } from './watcher';
 
 export default function* rootSaga() {
     yield [
@@ -10,5 +11,6 @@ export default function* rootSaga() {
         watchIncreaseOrderItem(),
         watchReduceOrderItem(),
         watchDeleteOrderItem(),
+        watchDeleteOrder(),
     ]
 }

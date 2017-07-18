@@ -36,7 +36,7 @@ class Qrcode extends Component {
             height: '50%',
             width: '100%',
             boxShadow: '0px 0px 30px 0px rgba(0,0,0,0.5)',
-            borderColor: '#00FF00',
+            borderColor: '#04bf00',
             borderStyle: 'solid'
         };
 

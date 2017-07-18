@@ -24,3 +24,8 @@ export const deleteOrderItemAction = (payload) => ({
     type: types.DELETE_ORDER_ITEM_REQUEST,
     payload
 });
+
+export const deleteOrderAction = (payload) => ({
+    type: types.DELETE_ORDER_REQUEST,
+    payload
+});

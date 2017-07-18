@@ -6,6 +6,7 @@ import addToOrderSaga from './addToOrderSaga';
 import increaseOrderItem from './increaseOrderItemSaga';
 import reduceOrderItem from './reduceOrderItemSaga';
 import deleteOrderItem from './deleteOrderItemSaga'
+import deleteOrder from './deleteOrderSaga';
 import * as types from '../constants/actionTypes';
 
 export function* watchFetchCategories() {
@@ -33,5 +34,9 @@ export function* watchReduceOrderItem() {
 }
 
 export function* watchDeleteOrderItem() {
-    yield  takeLatest(types.DELETE_ORDER_ITEM_REQUEST, deleteOrderItem);
+    yield takeLatest(types.DELETE_ORDER_ITEM_REQUEST, deleteOrderItem);
+}
+
+export function* watchDeleteOrder() {
+    yield takeLatest(types.DELETE_ORDER_REQUEST, deleteOrder);
 }

@@ -8,7 +8,7 @@ class Home extends Component {
             return (
                 <div>
                     <div>
-                        <h3 className="qrcode-header">Please centre QR and hold until redirected</h3>
+                        <h4 className="qrcode-header">Please centre QR and hold until redirected</h4>
                     </div>
                     <div>
                         <Qrcode />

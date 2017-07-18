@@ -52,7 +52,7 @@ export const addToOrder = (itemId) => {
 
 export const deleteOrderItem = (itemId) => {
     const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${localStorage.getItem('orderId')}/items/${itemId}`;
-    return axios.delete(URI, { menu_item_id: itemId });
+    return axios.delete(URI);
 };
 
 export const increaseOrderItem = (itemId) => {
@@ -71,4 +71,9 @@ export const createOrder = (restaurantId, tableId) => {
             localStorage.setItem("orderId", response.data.id);
             localStorage.setItem("restaurantId", restaurantId);
         });
+};
+
+export const deleteOrder = (orderId) => {
+    const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${orderId}`;
+    axios.delete(URI).then(localStorage.clear());
 };
