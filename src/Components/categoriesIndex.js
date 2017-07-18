@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategoriesAction } from '../actions/categoryActions';
 import { NavLink } from 'react-router-dom';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class CategoriesIndex extends Component {
 
@@ -41,9 +41,16 @@ class CategoriesIndex extends Component {
         return (
             <div>
                 <h3 className="menu-header">Menu Categories</h3>
-                <ul className="list-group menu-list">
-                    {this.renderCategories()}
-                </ul>
+                <ReactCSSTransitionGroup
+                    transitionName="menu"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <ul className="list-group menu-list">
+                        {this.renderCategories()}
+                    </ul>
+                </ReactCSSTransitionGroup>
             </div>
         );
     }

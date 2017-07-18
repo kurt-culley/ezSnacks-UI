@@ -4,6 +4,7 @@ import { fetchItemsAction } from '../actions/itemActions';
 import { addToOrderAction } from '../actions/orderActions';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Glyphicon } from 'react-bootstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ItemsIndex extends Component {
 
@@ -31,7 +32,9 @@ class ItemsIndex extends Component {
                             <img src={item.image_url} />
                         </div>
                         <div className="col-xs-6 col-sm-6 vcenter">
-                            <h4 onClick={() => this.handleClick(item.id)}>{item.name}</h4>
+                            <h4 onClick={() => this.handleClick(item.id)}>
+                                {item.name}
+                            </h4>
                             <small>{item.description}</small>
                         </div>
                         <div className="col-xs-2 col-sm-4 vcenter">
@@ -47,9 +50,16 @@ class ItemsIndex extends Component {
         return (
             <div>
                 <h3 className="menu-header">Category Items</h3>
-                <ul className="list-group menu-list" >
-                    {this.renderItems()}
-                </ul>
+                <ReactCSSTransitionGroup
+                    transitionName="menu"
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <ul className="list-group menu-list">
+                        {this.renderItems()}
+                    </ul>
+                </ReactCSSTransitionGroup>
                 <div>
                     <div>
                         <Button
