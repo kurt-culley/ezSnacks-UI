@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Button, Glyphicon} from 'react-bootstrap';
 import {browserHistory, withRouter} from 'react-router-dom';
-import {fetchOrderAction, deleteOrderAction} from '../actions/orderActions';
+import {deleteOrderAction} from '../actions/orderActions';
 import {connect} from 'react-redux';
 import OrderItems from './orderItems';
 import Checkout from './checkout';
@@ -21,11 +21,8 @@ class OrderContainer extends Component {
         this.handleCheckoutOrder = this.handleCheckoutOrder.bind(this);
     }
 
-    componentWillMount() {
-        if (localStorage.orderId) {
-            this.props.dispatch(fetchOrderAction(localStorage.getItem("orderId")));
-            this.props.history.push("/categories");
-        }
+    componentDidMount() {
+        this.props.history.push("/categories");
     }
 
     handleCloseModal() {
@@ -45,9 +42,9 @@ class OrderContainer extends Component {
 
     handleCheckoutOrder() {
         if (this.state.showCheckout === false) {
-            this.setState({ showCheckout: true });
+            this.setState({showCheckout: true});
         } else {
-            this.setState({ showCheckout: false });
+            this.setState({showCheckout: false});
         }
     }
 
@@ -66,7 +63,7 @@ class OrderContainer extends Component {
                     className="order-btn"
                 >
                     <Glyphicon glyph="glyphicon glyphicon-shopping-cart"/>
-                    <span className="order-badge">{this.props.order.order.order_items.length}</span>
+                    <span className="order-badge">{this.props.order.order_items.length}</span>
                 </Button>
                 <div>
                     <div>
@@ -75,10 +72,10 @@ class OrderContainer extends Component {
                                 <Modal.Title className="order-header">Order</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <OrderItems items={this.props.order.order.order_items}/>
+                                <OrderItems items={this.props.order.order_items}/>
                                 <div className="panel panel-default">
                                     <div className="panel-body">
-                                        <h4>Total: £{this.props.order.order.sub_total} </h4>
+                                        <h4>Total: £{this.props.order.sub_total} </h4>
                                     </div>
                                 </div>
                                 { this.state.showCheckout ? <Checkout/> : null }
@@ -122,8 +119,4 @@ class OrderContainer extends Component {
     }
 }
 
-const mapStateToProps = ({order}) => ({
-    order: order
-});
-
-export default withRouter(connect(mapStateToProps)(OrderContainer));
+export default withRouter(connect()(OrderContainer));

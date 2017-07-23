@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/home';
 import CategoriesIndex from './components/categoriesIndex';
 import ItemsIndex from './components/itemsIndex';
-import OrderContainer from './components/orderContainer';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -15,11 +14,10 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <div>
-                <OrderContainer />
+                <Home />
                 <Switch>
                     <Route path="/categories/:id/items" component={ItemsIndex} />
                     <Route path="/categories" component={CategoriesIndex} />
-                    <Route path="/" component={Home} />
                 </Switch>
             </div>
         </BrowserRouter>
