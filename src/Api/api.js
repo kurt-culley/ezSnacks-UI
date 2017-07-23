@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const ROOT_URL = 'https://enigmatic-island-60050.herokuapp.com/restaurants';
+const ROOT_URL = 'https://ancient-tundra-28811.herokuapp.com/restaurants';
 
 export const fetchCategories = () => {
     const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/menu_categories`;
-
     return fetch(URI)
         .then(response => {
             return response.json();
@@ -20,7 +19,6 @@ export const fetchCategories = () => {
 
 export const fetchItems = (categoryId) => {
     const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/menu_categories/${categoryId}/menu_items`;
-
     return fetch(URI)
         .then(response => {
             return response.json();
@@ -38,7 +36,6 @@ export const fetchItems = (categoryId) => {
 
 export const fetchOrder = (orderId) => {
     const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${orderId}`;
-
     return fetch(URI)
         .then(response => {
             return response.json();
@@ -66,7 +63,7 @@ export const reduceOrderItem = (itemId) => {
 };
 
 export const createOrder = (restaurantId, tableId) => {
-    axios.post(`${ROOT_URL}/${restaurantId}/orders`, { table_id: tableId })
+    return axios.post(`${ROOT_URL}/${restaurantId}/orders`, { table_id: tableId })
         .then(function (response) {
             localStorage.setItem("orderId", response.data.id);
             localStorage.setItem("restaurantId", restaurantId);
@@ -75,5 +72,22 @@ export const createOrder = (restaurantId, tableId) => {
 
 export const deleteOrder = (orderId) => {
     const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${orderId}`;
-    axios.delete(URI).then(localStorage.clear());
+    return axios.delete(URI).then(localStorage.clear());
+};
+
+export const checkoutOrder = (nonce) => {
+    const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${localStorage.getItem('orderId')}/payment`;
+    return axios.post(URI, { payment_method_nonce: nonce});
+};
+
+export const getPaymentToken = () => {
+    const URI = `${ROOT_URL}/${localStorage.getItem('restaurantId')}/orders/${localStorage.getItem('orderId')}/payment/client_token`;
+    return fetch(URI)
+        .then(
+        function(response){
+            return response.json();
+        }
+    ).then(function(responseData){
+        return responseData.client_token;
+    });
 };

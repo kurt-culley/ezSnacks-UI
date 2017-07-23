@@ -4,6 +4,7 @@ import {browserHistory, withRouter} from 'react-router-dom';
 import {fetchOrderAction, deleteOrderAction} from '../actions/orderActions';
 import {connect} from 'react-redux';
 import OrderItems from './orderItems';
+import Checkout from './checkout';
 
 class OrderContainer extends Component {
 
@@ -11,6 +12,7 @@ class OrderContainer extends Component {
         super();
         this.state = {
             showModal: false,
+            showCheckout: false,
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -42,7 +44,11 @@ class OrderContainer extends Component {
     }
 
     handleCheckoutOrder() {
-
+        if (this.state.showCheckout === false) {
+            this.setState({ showCheckout: true });
+        } else {
+            this.setState({ showCheckout: false });
+        }
     }
 
 
@@ -70,6 +76,12 @@ class OrderContainer extends Component {
                             </Modal.Header>
                             <Modal.Body>
                                 <OrderItems items={this.props.order.order.order_items}/>
+                                <div className="panel panel-default">
+                                    <div className="panel-body">
+                                        <h4>Total: £{this.props.order.order.sub_total} </h4>
+                                    </div>
+                                </div>
+                                { this.state.showCheckout ? <Checkout/> : null }
                             </Modal.Body>
                             <Modal.Footer>
                                 <div>
@@ -88,7 +100,7 @@ class OrderContainer extends Component {
                                         <div className="col-xs-4 text-center">
                                             <Button
                                                 className="btn-success checkout-btn"
-                                                onClick={this.handleCheckoutOrder()}>
+                                                onClick={() => this.handleCheckoutOrder()}>
                                                 Checkout
                                             </Button>
                                         </div>
