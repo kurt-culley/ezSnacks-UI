@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCategoriesAction } from '../actions/categoryActions';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Button, Glyphicon } from 'react-bootstrap';
 
 class CategoriesIndex extends Component {
 
     componentDidMount() {
-        this.props.dispatch(fetchCategoriesAction());
+        if (localStorage.restaurantId) {
+            this.props.dispatch(fetchCategoriesAction());
+        } else {
+            this.props.history.push("/order/new");
+        }
     }
 
     renderCategories() {
@@ -40,17 +45,25 @@ class CategoriesIndex extends Component {
     render() {
         return (
             <div>
-                <h3 className="menu-header">Menu Categories</h3>
-                <ReactCSSTransitionGroup
-                    transitionName="menu"
-                    transitionAppear={true}
-                    transitionAppearTimeout={500}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <ul className="list-group menu-list">
-                        {this.renderCategories()}
-                    </ul>
-                </ReactCSSTransitionGroup>
+                <div className="container">
+                    <h3 className="menu-header">Menu Categories</h3>
+                    <ReactCSSTransitionGroup
+                        transitionName="menu"
+                        transitionAppear={true}
+                        transitionAppearTimeout={500}
+                        transitionEnter={false}
+                        transitionLeave={false}>
+                        <ul className="list-group menu-list">
+                            {this.renderCategories()}
+                        </ul>
+                    </ReactCSSTransitionGroup>
+                    <Button
+                        bsStyle="primary"
+                        bsSize="large"
+                        className="back-btn">
+                        <Link to="/"><Glyphicon glyph="glyphicon glyphicon-arrow-left" /></Link>
+                    </Button>
+                </div>
             </div>
         );
     }

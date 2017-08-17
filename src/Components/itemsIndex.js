@@ -49,25 +49,27 @@ class ItemsIndex extends Component {
     render() {
         return (
             <div>
-                <h3 className="menu-header">Category Items</h3>
-                <ReactCSSTransitionGroup
-                    transitionName="menu"
-                    transitionAppear={true}
-                    transitionAppearTimeout={500}
-                    transitionEnter={false}
-                    transitionLeave={false}>
-                    <ul className="list-group menu-list">
-                        {this.renderItems()}
-                    </ul>
-                </ReactCSSTransitionGroup>
-                <div>
+                <div className="container">
+                    <h3 className="menu-header">Category Items</h3>
+                    <ReactCSSTransitionGroup
+                        transitionName="menu"
+                        transitionAppear={true}
+                        transitionAppearTimeout={500}
+                        transitionEnter={false}
+                        transitionLeave={false}>
+                        <ul className="list-group menu-list">
+                            {this.renderItems()}
+                        </ul>
+                    </ReactCSSTransitionGroup>
                     <div>
-                        <Button
-                            bsStyle="primary"
-                            bsSize="large"
-                            className="back-btn">
-                            <Link to="/categories/"><Glyphicon glyph="glyphicon glyphicon-arrow-left" /></Link>
-                        </Button>
+                        <div>
+                            <Button
+                                bsStyle="primary"
+                                bsSize="large"
+                                className="back-btn">
+                                <Link to="/categories/"><Glyphicon glyph="glyphicon glyphicon-arrow-left" /></Link>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

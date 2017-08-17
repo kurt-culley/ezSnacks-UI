@@ -22,8 +22,7 @@ export const fetchItems = (categoryId) => {
     return fetch(URI)
         .then(response => {
             return response.json();
-        })
-        .then(json => {
+        }).then(json => {
             return json.map(({ description, id, image_url, name, price }) => ({
                 description,
                 id,
@@ -39,6 +38,8 @@ export const fetchOrder = (orderId) => {
     return fetch(URI)
         .then(response => {
             return response.json();
+        }).then(json => {
+            return json;
         });
 };
 

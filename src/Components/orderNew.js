@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchCategoriesAction } from '../actions/categoryActions';
 import { browserHistory, withRouter } from 'react-router-dom';
 
-class Qrcode extends Component {
+class OrderNew extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -42,6 +42,8 @@ class Qrcode extends Component {
 
         return(
             <div className="container-fluid">
+                <h3 className="menu-header">New Order</h3>
+                <p>Scan QRCode to begin</p>
               <div className="row">
                 <div className="col-xs-12" >
                   <QrReader
@@ -53,9 +55,15 @@ class Qrcode extends Component {
                   />
                 </div>
               </div>
+                <Button
+                    bsStyle="primary"
+                    bsSize="large"
+                    className="back-btn">
+                    <Link to="/"><Glyphicon glyph="glyphicon glyphicon-arrow-left" /></Link>
+                </Button>
             </div>
         )
     }
 }
 
-export default withRouter(connect()(Qrcode));
+export default withRouter(connect()(OrderNew));

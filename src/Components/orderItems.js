@@ -66,7 +66,6 @@ class OrderItems extends Component {
     }
 
     render() {
-
         return (
             <div>
               <ul className="list-group">

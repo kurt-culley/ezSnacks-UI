@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import Dropin from 'braintree-web-drop-in';
 import { checkoutOrder, getPaymentToken } from '../Api/api';
 
-class Checkout extends Component {
+class OrderCheckout extends Component {
 
     constructor() {
         super();
         this.state = {
-            value: null,
             checkout: false,
             token: null,
         };
@@ -61,4 +60,4 @@ class Checkout extends Component {
     }
 }
 
-export default Checkout;
+export default OrderCheckout;
