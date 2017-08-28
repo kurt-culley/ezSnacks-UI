@@ -18,7 +18,7 @@ class AdminHome extends Component {
                                     <div className="col-xs-6 col-xs-offset-3">
                                         <ul className="list-group menu-list">
                                             <li className="list-group-item home-list-item">
-                                                <Link to='/categories'>
+                                                <Link to='/categories/manage'>
                                                     <h4>Manage menus</h4>
                                                     <Glyphicon
                                                         glyph="glyphicon glyphicon-wrench home-glyph vcenter"/>

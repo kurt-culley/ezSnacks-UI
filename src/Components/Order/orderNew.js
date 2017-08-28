@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import QrReader from 'react-qr-reader'
-import { createOrder } from '../Api/api';
-import { connect } from 'react-redux';
-import { fetchCategoriesAction } from '../actions/categoryActions';
-import { browserHistory, withRouter } from 'react-router-dom';
+import {createOrder} from '../../Api/api';
+import {connect} from 'react-redux';
+import {fetchCategoriesAction} from '../../Actions/categoryActions';
+import {browserHistory, withRouter, Link} from 'react-router-dom';
+import {Button, Glyphicon} from 'react-bootstrap';
 
 class OrderNew extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             delay: 500,
@@ -16,8 +17,8 @@ class OrderNew extends Component {
     }
 
 
-    handleScan(result){
-        if(result){
+    handleScan(result) {
+        if (result) {
             const resultParsed = JSON.parse(result);
             createOrder(resultParsed.restaurant_id, resultParsed.table_id);
             localStorage.setItem("restaurantId", resultParsed.restaurant_id);
@@ -26,11 +27,11 @@ class OrderNew extends Component {
         }
     }
 
-    handleError(err){
+    handleError(err) {
         console.error(err)
     }
 
-    render(){
+    render() {
 
         const previewStyle = {
             height: '50%',
@@ -40,26 +41,25 @@ class OrderNew extends Component {
             borderStyle: 'solid'
         };
 
-        return(
+        return (
             <div className="container-fluid">
-                <h3 className="menu-header">New Order</h3>
-                <p>Scan QRCode to begin</p>
-              <div className="row">
-                <div className="col-xs-12" >
-                  <QrReader
-                      delay={this.state.delay}
-                      style={previewStyle}
-                      onError={this.handleError}
-                      onScan={this.handleScan}
-                      facingMode='rear'
-                  />
+                <h3 className="qrcode-header">New Order</h3>
+                <p className="new-order-text">Scan QR code to begin</p>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <QrReader
+                            delay={this.state.delay}
+                            style={previewStyle}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            facingMode='rear'
+                        />
+                    </div>
                 </div>
-              </div>
                 <Button
-                    bsStyle="primary"
                     bsSize="large"
                     className="back-btn">
-                    <Link to="/"><Glyphicon glyph="glyphicon glyphicon-arrow-left" /></Link>
+                    <Link to="/"><Glyphicon glyph="glyphicon glyphicon-arrow-left"/></Link>
                 </Button>
             </div>
         )

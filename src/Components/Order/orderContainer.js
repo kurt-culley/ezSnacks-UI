@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchOrderAction} from '../actions/orderActions';
+import {fetchOrderAction} from '../../Actions/orderActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {browserHistory, withRouter} from 'react-router-dom';
 import OrderModal from './orderModal';

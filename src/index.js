@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import CategoriesIndex from './components/categoriesIndex';
-import ItemsIndex from './components/itemsIndex';
-import AdminOrderTracker from './components/orderTrackerAdmin';
-import OrderTracker from './components/orderTracker';
+import CategoriesIndex from './Components/Categories/categoriesIndex';
+import ItemsIndex from './Components/Items/itemsIndex';
+import AdminOrderTracker from './Components/Order/orderTrackerAdmin';
+import OrderTracker from './Components/Order/orderTracker';
 import Home from './components/home';
-import AdminHome from './components/adminHome';
-import Login from './components/login';
-import OrderContainer from './components/orderContainer';
-import OrderNew from './components/orderNew';
-
+import AdminHome from './Components/Admin/adminHome';
+import Login from './Components/Admin/login';
+import OrderContainer from './Components/Order/orderContainer';
+import OrderNew from './Components/Order/orderNew';
+import CategoriesManage from './Components/Categories/categoriesManage';
+import ItemsManage from './Components/Items/itemsManage';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
@@ -32,7 +33,9 @@ ReactDOM.render(
                     <Route path="/admin" component={AdminHome} />
                 </switch>
                 <Switch>
+                    <Route path="/categories/:id/items/manage" component={ItemsManage} />
                     <Route path="/categories/:id/items" component={ItemsIndex} />
+                    <Route path="/categories/manage" component={CategoriesManage} />
                     <Route path="/categories" component={CategoriesIndex} />
                 </Switch>
                 <Route exact path="/" component={Home} />

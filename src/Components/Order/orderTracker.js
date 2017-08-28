@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {ProgressBar, Button} from 'react-bootstrap';
+import {ProgressBar, Button, Glyphicon} from 'react-bootstrap';
 import {browserHistory, withRouter} from 'react-router-dom';
-import {fetchOrderAction} from '../actions/orderActions';
+import {fetchOrderAction} from '../../Actions/orderActions';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-class OrderTrackerAdmin extends Component {
+class OrderTracker extends Component {
 
     componentWillMount() {
-        if (localStorage.orderId && localStorage.restaurantId) {
+        if (localStorage.orderId) {
             this.props.dispatch(fetchOrderAction(localStorage.getItem("orderId")));
             setInterval(function () {
                 window.location.reload()
@@ -45,6 +46,11 @@ class OrderTrackerAdmin extends Component {
                 </li>
             )
         })
+    }
+
+    handleNewOrder() {
+        localStorage.clear();
+        window.location.reload();
     }
 
     calcPercentage() {
@@ -87,6 +93,11 @@ class OrderTrackerAdmin extends Component {
                 <ul className="list-group menu-list">
                     {this.renderItems()}
                 </ul>
+                <Button
+                    bsSize="large"
+                    className="back-btn">
+                    <Link to="/"><Glyphicon glyph="glyphicon glyphicon-arrow-left"/></Link>
+                </Button>
             </div>
         )
     }
@@ -96,4 +107,4 @@ const mapStateToProps = ({order}) => ({
     order: order
 });
 
-export default withRouter(connect(mapStateToProps)(OrderTrackerAdmin));
+export default withRouter(connect(mapStateToProps)(OrderTracker));

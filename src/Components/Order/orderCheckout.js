@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropin from 'braintree-web-drop-in';
-import { checkoutOrder, getPaymentToken } from '../Api/api';
+import { checkoutOrder, getPaymentToken } from '../../Api/api';
 
 class OrderCheckout extends Component {
 
