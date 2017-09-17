@@ -10,7 +10,7 @@ class OrderTracker extends Component {
     componentWillMount() {
         if (localStorage.orderId) {
             this.props.dispatch(fetchOrderAction(localStorage.getItem("orderId")));
-            setInterval(function () {
+            setTimeout(() => {
                 window.location.reload()
             }, 30000);
         } else {

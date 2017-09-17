@@ -13,9 +13,8 @@ class OrderCheckout extends Component {
     }
 
     componentDidMount(){
-        let self = this;
-        getPaymentToken().then(function(result) {
-            self.setState({token: result})
+        getPaymentToken().then((result) => {
+            this.setState({token: result})
         });
     }
 

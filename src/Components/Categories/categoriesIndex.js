@@ -27,10 +27,10 @@ class CategoriesIndex extends Component {
                     key={category.id}
                 >
                     <div className="row-">
-                        <div className="col-xs-4 col-sm-2 vcenter">
+                        <div className="col-xs-4 col-sm-2 col-lg-4 vcenter">
                             <img src={category.image_url}/>
                         </div>
-                        <div className="col-xs-8 col-sm-8 vcenter">
+                        <div className="col-xs-8 col-sm-8 col-lg-8 vcenter">
                             <NavLink to={`/categories/${category.id}/items`}>
                                 <h4>{category.name}</h4>
                             </NavLink>
@@ -45,7 +45,7 @@ class CategoriesIndex extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2">
+                    <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-lg-4 col-lg-offset-4">
                         <h3 className="menu-header">Menu Categories</h3>
                         <ReactCSSTransitionGroup
                             transitionName="menu"

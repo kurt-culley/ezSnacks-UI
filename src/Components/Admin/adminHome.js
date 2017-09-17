@@ -29,7 +29,7 @@ class AdminHome extends Component {
                                     <div className="col-xs-6 col-xs-offset-3">
                                         <ul className="list-group menu-list">
                                             <li className="list-group-item home-list-item">
-                                                <Link to='/order/tracker'>
+                                                <Link to='/admin/tracker'>
                                                     <h4>Orders tracker</h4>
                                                     <Glyphicon
                                                         glyph="glyphicon glyphicon-time home-glyph vcenter"/>

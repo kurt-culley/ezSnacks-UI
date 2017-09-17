@@ -63,7 +63,7 @@ class CategoriesManage extends Component {
                     className="list-group-item"
                     key={category.id}
                 >
-                    <div className="row-">
+                    <div className="row">
                         <div className="col-xs-4 col-sm-2 vcenter">
                             <img src={category.image_url}/>
                         </div>

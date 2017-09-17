@@ -26,7 +26,7 @@ export const createCategory = (payload) => {
 
 export const updateCategory = (payload, categoryId) => {
     const URI = `${ROOT_URL}/menu_categories/${categoryId}`;
-    return axios.put(URI, {name: payload.name, image_url: payload.image});
+    return axios.patch(URI, {name: payload.name, image_url: payload.image});
 };
 
 export const deleteCategory = (categoryId) => {
@@ -86,6 +86,16 @@ export const fetchOrder = (orderId) => {
         });
 };
 
+export const fetchOrders = (restaurantId) => {
+    const URI = `${ROOT_URL}/restaurants/${restaurantId}/orders`;
+    return fetch(URI)
+        .then(response => {
+            return response.json();
+        }).then(json => {
+            return json;
+        });
+};
+
 export const createOrder = (restaurantId, tableId) => {
     return axios.post(`${ROOT_URL}/tables/${tableId}/orders`)
         .then(function (response) {
@@ -94,11 +104,24 @@ export const createOrder = (restaurantId, tableId) => {
         });
 };
 
+export const checkoutOrder = (nonce) => {
+    const URI = `${ROOT_URL}/orders/${localStorage.getItem('orderId')}/payment`;
+    return axios.post(URI, {payment_method_nonce: nonce});
+};
+
+
 export const deleteOrder = (orderId) => {
     const URI = `${ROOT_URL}/orders/${orderId}`;
     return axios.delete(URI).then(localStorage.clear());
 };
 
+export const updateOrder = (orderId, payload) => {
+    const URI = `${ROOT_URL}/orders/${orderId}`;
+    return axios.patch(URI, {status: payload});
+};
+
+
+//Order Item
 export const addToOrder = (itemId) => {
     const URI = `${ROOT_URL}/orders/${localStorage.getItem('orderId')}/items`;
     return axios.post(URI, {menu_item_id: itemId});
@@ -119,10 +142,9 @@ export const reduceOrderItem = (itemId) => {
     return axios.post(URI);
 };
 
-
-export const checkoutOrder = (nonce) => {
-    const URI = `${ROOT_URL}/orders/${localStorage.getItem('orderId')}/payment`;
-    return axios.post(URI, {payment_method_nonce: nonce});
+export const updateOrderItem = (orderId, itemId, payload) => {
+    const URI = `${ROOT_URL}/orders/${orderId}/items/${itemId}`;
+    return axios.patch(URI, {status: payload});
 };
 
 

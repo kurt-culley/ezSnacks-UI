@@ -44,17 +44,7 @@ html {
 }
 
 body {
-    width: 100wh;
-    height: 90vh;
-
-
-    background: linear-gradient(-45deg, #FFB88C, #DE6262, #348AC7, #7474BF);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
-
-
+    background: #FFFFF7;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -82,7 +72,7 @@ li .list-group-item {
 
 .list-group-item h4 {
     color: #0F0E0E;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .list-group-item img {
@@ -92,7 +82,7 @@ li .list-group-item {
 }
 
 .menu-list {
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 3px;
 }
 
@@ -100,13 +90,13 @@ a strong {
     color: #0F0E0E;
 }
 
-h3 {
-    color: #FFFFFF;
+h3, h1{
+    font-weight: 600;
+    color: #0F0E0E;
 }
 
 .menu-header {
-    text-shadow: 0px 3px 2px rgba(0,0,0,0.3);
-    color: #FCFCFC;
+    color: #0F0E0E;
     text-align: center;
     padding-bottom: 15px;
     padding-top: 5px;
@@ -272,11 +262,11 @@ h3 {
 .home-body {
     padding-bottom: 50px;
     text-align: center;
-    color: #FFFFFF;
+    color: #0F0E0E;
 }
 
+
 .home-header {
-    text-shadow: 0px 3px 2px rgba(0,0,0,0.3);
     padding-bottom: 15px;
 }
 
@@ -329,4 +319,20 @@ h3 {
     text-align: center;
     color: white;
     text-shadow: 0px 3px 2px rgba(0,0,0,0.3);
+}
+
+.table {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.panel-detail {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+small {
+    padding-left: 5px;
+}
+
+.centred-label {
+    text-align: center;
 }

@@ -23,15 +23,14 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <OrderContainer/>
-                <switch>
+                <Switch>
                     <Route path="/order/new" component={OrderNew} />
                     <Route path="/order/tracker" component={OrderTracker} />
-                </switch>
-                <switch>
-                    <Route path="/admin/login" component={Login} />
+                </Switch>
+                <Switch>
                     <Route path="/admin/tracker" component={AdminOrderTracker} />
                     <Route path="/admin" component={AdminHome} />
-                </switch>
+                </Switch>
                 <Switch>
                     <Route path="/categories/:id/items/manage" component={ItemsManage} />
                     <Route path="/categories/:id/items" component={ItemsIndex} />

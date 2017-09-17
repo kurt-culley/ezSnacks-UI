@@ -1,99 +1,114 @@
 import React, {Component} from 'react';
 import {ProgressBar, Button} from 'react-bootstrap';
 import {browserHistory, withRouter} from 'react-router-dom';
-import {fetchOrderAction} from '../../Actions/orderActions';
-import {connect} from 'react-redux';
+import {fetchOrders} from '../../Api/api';
+import OrderTrackerDetail from './orderTrackerDetail';
+import {Glyphicon, Badge} from 'react-bootstrap';
 
 class OrderTrackerAdmin extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            orders: [],
+            order: null,
+            statusFilter: '',
+            showDetail: false,
+        };
+        this.handleFilterChange = this.handleFilterChange.bind(this);
+    }
+
     componentWillMount() {
-        if (localStorage.orderId && localStorage.restaurantId) {
-            this.props.dispatch(fetchOrderAction(localStorage.getItem("orderId")));
-            setInterval(function () {
-                window.location.reload()
-            }, 30000);
+        fetchOrders(localStorage.restaurantId).then(response => {
+            const orders = response.map(obj => obj);
+            this.setState({orders});
+        });
+    }
+
+    handleOpenOrderDetail(order) {
+        if (!this.state.showDetail) {
+            this.setState({showDetail: true, order: order})
         } else {
-            this.props.history.push("/");
+            this.setState({showDetail: false, order: null})
         }
     }
 
-    renderItems() {
-        return this.props.order.order_items.map((item) => {
-            return (
-                <li
-                    className="list-group-item"
-                    key={item.id}>
-                    <div className="row-">
-                        <div className="col-xs-4 col-sm-2 vcenter">
-                            <img src={item.menu_item.image_url}/>
-                        </div>
-                        <div className="col-xs-4 col-sm-6 vcenter">
-                            <h4>{item.menu_item.name}</h4>
-                            <small>{item.menu_item.description}</small>
-                            <br />
-                            <small>Quantity: {item.quantity}</small>
-                        </div>
-                        <div className="col-xs-4 col-sm-4 vcenter">
-                            <h4>
-                                <span
-                                    className={item.status === 'complete' ?
-                                        'label label-success' : ' label label-danger'}> {item.status}
-                                </span>
-                            </h4>
-                        </div>
-                    </div>
-                </li>
-            )
+    handleFilterChange(event) {
+        const value = event.target.value;
+
+        this.setState({
+            statusFilter: value
+        });
+    }
+
+    renderRows() {
+        if (!this.state.orders) {
+            return <div></div>;
+        }
+
+        return this.state.orders.map((order) => {
+            if (order.status === this.state.statusFilter) {
+                return (
+                    <tr key={order.id}>
+                        <td>{order.id}</td>
+                        <td>{order.table_id}</td>
+                        <td>{order.status}</td>
+                        <td>£{order.sub_total}</td>
+                        <td>
+                            <button onClick={() => this.handleOpenOrderDetail(order)}
+                                    className="btn btn-success">
+                                <Glyphicon glyph="glyphicon glyphicon-wrench"/>
+                            </button>
+                        </td>
+                    </tr>
+                )
+            }
         })
     }
 
-    calcPercentage() {
-        let num_items = this.props.order.order_items.length * 10;
-        let num_complete = 0;
-        this.props.order.order_items.forEach(function (item) {
-            item.status === 'complete' ? num_complete += 10 : null
-        });
-        return Math.floor((num_complete / num_items) * 100);
-    }
-
-
     render() {
-        if (!this.props.order) {
-            return <div>Loading...</div>;
-        }
-        let percentage = this.calcPercentage();
         return (
-            <div className="container">
-                <h3 className="menu-header">Order Tracker</h3>
-                <div className="panel panel-default">
-                    <div className="panel-body tracker-panel">
-                        <ProgressBar bsStyle="success" active now={percentage} label={`${percentage}%`}/>
-                        { percentage === 100 ?
-                            <div className="order-tracker-btn">
-                                <Button
-                                    className="btn-block btn-success"
-                                    onClick={() => {
-                                        if (confirm('Are you sure?')) {
-                                            this.handleNewOrder();
-                                        }
-                                    }}>
-                                    New Order
-                                </Button>
-                            </div> : null
-                        }
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-md-2 col-lg-4" />
+                    <div className="col-xs-12 col-md-8 col-lg-4">
+                        <h3 className="menu-header">Orders Tracker</h3>
+                        <form className="form-horizontal">
+                            <div className="form-group">
+                                <div className="col-xs-12">
+                                    <select
+                                        className="form-control"
+                                        onChange={this.handleFilterChange}>
+                                        <option>Select filter</option>
+                                        <option value="in_progress">In progress</option>
+                                        <option value="complete">Complete</option>
+                                        <option value="pending_payment">Pending payment</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <div className="panel panel-default">
+                            <table className="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Table</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {this.renderRows()}
+                                </tbody>
+                            </table>
+                        </div>
+                        { this.state.showDetail ? <OrderTrackerDetail order={this.state.order}/> : <div></div>}
                     </div>
+                    <div className="col-md-2 col-lg-4" />
                 </div>
-
-                <ul className="list-group menu-list">
-                    {this.renderItems()}
-                </ul>
             </div>
         )
     }
 }
 
-const mapStateToProps = ({order}) => ({
-    order: order
-});
-
-export default withRouter(connect(mapStateToProps)(OrderTrackerAdmin));
+export default withRouter(OrderTrackerAdmin);
